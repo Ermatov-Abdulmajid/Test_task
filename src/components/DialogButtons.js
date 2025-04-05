@@ -1,28 +1,9 @@
-import React, { useState } from "react";
-import { deleteCompany } from "../api";
+import React from "react";
 
-const DialogButtons = ({ companyId }) => {
-  const [showNameDialog, setShowNameDialog] = useState(false);
-  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
-  const [newName, setNewName] = useState("Eternal Rest Funeral Home");
-
-  const handleDelete = async () => {
-    try {
-      await deleteCompany(companyId);
-      alert("Organization deleted");
-      setShowDeleteDialog(false);
-    } catch (error) {
-      console.error("Failed to delete organization:", error);
-    }
-  };
-
-  const handleNameSave = () => {
-    setShowNameDialog(false);
-  };
-
+const DialogButtons = () => {
   return (
     <div className="dialog-buttons">
-      <div>Made by Abdumajid</div>
+      <a href="https://abdumajid-portfolio.netlify.app/">Made By Abdumajid</a>
     </div>
   );
 };

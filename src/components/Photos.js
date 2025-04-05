@@ -7,18 +7,28 @@ const Photos = ({ photos, companyId, setCompany }) => {
   const [file, setFile] = useState(null);
   const fileInputRef = useRef(null);
 
-  const handleUpload = async () => {
-    if (!file) return;
+  // Handle file selection and trigger upload automatically
+  const handleFileChange = async (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      await handleUpload(selectedFile); // Trigger upload immediately after file selection
+    }
+  };
+
+  const handleUpload = async (fileToUpload) => {
+    if (!fileToUpload) return;
     try {
-      const newImage = await uploadImage(companyId, file);
+      const newImage = await uploadImage(companyId, fileToUpload);
       setCompany((prev) => ({
         ...prev,
         photos: [...prev.photos, newImage],
       }));
       setFile(null);
-      fileInputRef.current.value = null;
+      fileInputRef.current.value = null; // Reset file input
     } catch (error) {
       console.error("Failed to upload image:", error);
+      alert("Failed to upload image. Please try again."); // User feedback
     }
   };
 
@@ -31,6 +41,7 @@ const Photos = ({ photos, companyId, setCompany }) => {
       }));
     } catch (error) {
       console.error("Failed to delete image:", error);
+      alert("Failed to delete image. Please try again."); // User feedback
     }
   };
 
@@ -54,7 +65,8 @@ const Photos = ({ photos, companyId, setCompany }) => {
         type="file"
         className="file-input"
         ref={fileInputRef}
-        onChange={(e) => setFile(e.target.files[0])}
+        onChange={handleFileChange} // Trigger upload on file selection
+        accept="image/*" // Restrict to images
       />
       <button
         className="add-photo-button"
