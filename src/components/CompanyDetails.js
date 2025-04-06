@@ -9,9 +9,9 @@ const CompanyDetails = ({ company, setCompany }) => {
     contract: company.contract,
     type: company.type,
   });
-  const [error, setError] = useState(null); // Error state for handling errors
+  const [error, setError] = useState(null); 
 
-  // Reset formData if company prop changes
+  
   useEffect(() => {
     setFormData({
       name: company.name,
@@ -19,7 +19,7 @@ const CompanyDetails = ({ company, setCompany }) => {
       contract: company.contract,
       type: company.type,
     });
-  }, [company]); // Dependency on company prop
+  }, [company]); 
 
   const handleSave = async () => {
     try {
@@ -36,7 +36,6 @@ const CompanyDetails = ({ company, setCompany }) => {
     <div className="company-details">
       <h3>Company Details</h3>
       {error && <div className="error-message">{error}</div>}{" "}
-      {/* Display error message */}
       {isEditing ? (
         <>
           <div className="input-group">
