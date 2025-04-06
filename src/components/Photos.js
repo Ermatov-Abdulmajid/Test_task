@@ -7,7 +7,6 @@ const Photos = ({ photos, companyId, setCompany }) => {
   const [file, setFile] = useState(null);
   const fileInputRef = useRef(null);
 
-  // Handle file selection and trigger upload automatically
   const handleFileChange = async (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
@@ -25,10 +24,10 @@ const Photos = ({ photos, companyId, setCompany }) => {
         photos: [...prev.photos, newImage],
       }));
       setFile(null);
-      fileInputRef.current.value = null; // Reset file input
+      fileInputRef.current.value = null; // Reset
     } catch (error) {
       console.error("Failed to upload image:", error);
-      alert("Failed to upload image. Please try again."); // User feedback
+      alert("Failed to upload image. Please try again.");
     }
   };
 
@@ -41,7 +40,7 @@ const Photos = ({ photos, companyId, setCompany }) => {
       }));
     } catch (error) {
       console.error("Failed to delete image:", error);
-      alert("Failed to delete image. Please try again."); // User feedback
+      alert("Failed to delete image. Please try again.");
     }
   };
 
@@ -65,8 +64,8 @@ const Photos = ({ photos, companyId, setCompany }) => {
         type="file"
         className="file-input"
         ref={fileInputRef}
-        onChange={handleFileChange} // Trigger upload on file selection
-        accept="image/*" // Restrict to images
+        onChange={handleFileChange}
+        accept="image/*"
       />
       <button
         className="add-photo-button"
