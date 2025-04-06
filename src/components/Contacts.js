@@ -9,7 +9,7 @@ const Contacts = ({ contact }) => {
     phone: contact.phone || "",
     email: contact.email || "",
   });
-  const [error, setError] = useState(""); // State for error messages
+  const [error, setError] = useState("");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -34,7 +34,6 @@ const Contacts = ({ contact }) => {
     }
 
     try {
-      // Log contact ID for debugging
       console.log("Contact ID:", contact.id);
       if (!contact.id) {
         throw new Error("Contact ID is missing.");
@@ -57,7 +56,7 @@ const Contacts = ({ contact }) => {
       });
 
       setIsEditing(false);
-      setError(""); // Clear any errors
+      setError(""); 
     } catch (error) {
       console.error("Failed to save contact details:", error);
       setError("Failed to save contact details. Please try again.");
